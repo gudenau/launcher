@@ -1,0 +1,78 @@
+plugins {
+    id 'com.github.gmazzo.buildconfig' version '3.0.3'
+}
+
+allprojects {
+    apply plugin: 'java'
+
+    version = "${version}"
+    group = "net.gudenau.launcher"
+
+    repositories {
+        mavenCentral()
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of("${javaVersion}")
+        }
+
+        modularity.inferModulePath = true
+
+        withSourcesJar()
+        //withJavadocJar()
+    }
+
+    dependencies {
+        compileOnly "org.jetbrains:annotations:${annotationsVersion}"
+    }
+
+    if(java.nio.file.Files.isRegularFile(project.projectDir.toPath().resolve(java.nio.file.Path.of("src", "main", "java", "module-info.java")))) {
+        tasks.withType(JavaCompile) {
+            configure {
+                options.compilerArgs += [
+                    '--add-modules', 'org.jetbrains.annotations'
+                ]
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.ow2.asm:asm:9.3'
+    implementation 'org.ow2.asm:asm-tree:9.3'
+    implementation 'com.google.code.gson:gson:2.9.1'
+    implementation 'it.unimi.dsi:fastutil:8.5.9'
+}
+
+buildConfig {
+    className('Versions')
+    packageName('net.gudenau.launcher')
+
+    buildConfigField('net.gudenau.launcher.api.util.Version', 'LAUNCHER_VERSION', "Version.parse(\"${version}\")")
+}
+
+task runLauncher(type: JavaExec) {
+    group = 'Execution'
+    classpath = sourceSets.main.runtimeClasspath
+    mainModule = 'launcher'
+    mainClass = 'net.gudenau.launcher.Launcher'
+}
+
+tasks.withType(JavaCompile) {
+    configure {
+        options.compilerArgs += [
+            '--add-reads', 'launcher=org.jetbrains.annotations'
+        ]
+    }
+}
+
+tasks.withType(Javadoc) {
+    configure {
+        /*TODO
+        options.compilerArgs += [
+            '--add-reads', 'launcher=org.jetbrains.annotations'
+        ]
+         */
+    }
+}

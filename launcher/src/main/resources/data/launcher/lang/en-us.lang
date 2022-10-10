@@ -1,0 +1,3 @@
+splash.loading.ui=Loading UI
+splash.loading.plugins=Loading Plugins
+splash.loading.plugin=Initializing %s

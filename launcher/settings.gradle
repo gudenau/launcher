@@ -1,0 +1,11 @@
+import java.nio.file.Files
+
+try(var stream = Files.list(rootProject.projectDir.toPath().resolve("modules"))) {
+    stream.filter(Files::isDirectory)
+        .filter((path) -> Files.isRegularFile(path.resolve('build.gradle')))
+        .forEach((path) -> {
+            var name = path.getFileName().toString()
+            include(name)
+            project(':' + name).projectDir = path.toFile()
+        })
+}

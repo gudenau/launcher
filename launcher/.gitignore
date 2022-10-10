@@ -1,0 +1,5 @@
+.idea/
+.gradle/
+run/
+*.7z
+/data/

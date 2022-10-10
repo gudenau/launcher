@@ -1,0 +1,18 @@
+{
+  "setting.disable_hiding": "Disable Hiding",
+  "setting.thread_count": "Thread Count",
+  "ui.dialog.error.okay": "Ok",
+  "ui.dialog.profile_add.error_name": "Profile name can not be empty.",
+  "ui.dialog.profile_add.name": "Profile Name",
+  "ui.dialog.profile_add.name_hint": "Name",
+  "ui.dialog.profile_add.confirm": "Create",
+  "ui.dialog.profile_add.cancel": "Cancel",
+  "ui.dialog.settings.apply": "Apply",
+  "ui.dialog.settings.cancel": "Cancel",
+  "ui.dialog.settings.global": "Global Settings",
+  "ui.dialog.settings.global_warning": "(Global setting may need a restart to apply)",
+  "ui.dialog.settings.profile": "Profile Settings",
+  "ui.dialog.settings.profile.accounts": "Account Settings",
+  "ui.profile_add": "Add Profile",
+  "ui.settings": "Settings"
+}

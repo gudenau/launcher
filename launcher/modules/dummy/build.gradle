@@ -1,0 +1,11 @@
+dependencies {
+    implementation(rootProject)
+}
+
+tasks.withType(JavaCompile) {
+    configure {
+        options.compilerArgs += [
+            '--add-reads', 'dummy=org.jetbrains.annotations'
+        ]
+    }
+}

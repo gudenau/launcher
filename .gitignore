@@ -1,0 +1,7 @@
+.idea/
+build/
+libs/
+out/
+run/
+rootfs/
+*.o
